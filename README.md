@@ -6,6 +6,7 @@ If you are missing any of the following pieces of software, none of this will wo
  * [.NET 6.x SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
 # Configure:
+1. In OBS, create a Scene called `BambuStream`. You don't need to populate it with Sources. This will happen when you run this application, as the application sends all data including Source values/icons via WebSockets (built into OBS and configured below).
 1. Download this repository (extract the contents if you downloaded a .zip of the repository)
 1. Open VSCode, click <kbd>File</kbd> > <kbd>Open Folder</kbd>.
 1. Select the folder called `BambuVideoStream-master` (the one that contains the `.vscode`, BambuVideoStream, and Images folders within it)
@@ -18,7 +19,7 @@ If you are missing any of the following pieces of software, none of this will wo
 | password   | Set this to the `Access Code` displayed on your Bambu X1C 3D Printer. You can get this by tapping the hex nut (⬢) icon from the front panel on your printer. This is also the same access code used to connect from the slicer software of your choosing. |
 | serial     | Set this to the `Device Info` value on your Bambu X1C 3D Printer. |
 | pathToSDP | There are two things to check here. First, ensure you replace `XXXXX` with your Windows username. Second, ensure it points to your slicer's libraries. For OrcaSlicer this is different. (e.g. `C:/Users/<yourusername>/AppData/Roaming/OrcaSlicer/cameratools/ffmpeg.sdp` Again, depending on the slicer software you use, this will be different. Note I change the default `BambuStudio` to `OrcaSlicer` in the path. If you're like me and never installed BambuStudio, you will need to do this, otherwise this tool will print to a non-existent ffmpeg.sdp. |
-| ObsWsConnection | You don't need to change anything here, but be warned, if you don't enable this in OBS under <kbd>Tools</kbd> > <kbd>WebSocket Server Settings</kbd>, it won't work.
+| ObsWsConnection | You don't need to change anything here, but be warned, if you don't enable this in OBS under <kbd>Tools</kbd> > <kbd>WebSocket Server Settings</kbd>, it won't work. It currently only works on your local network and without password authentication. |
 
 # Run
 1. In VSCode hold <kbd>Ctrl</kbd> + <kbd>F5</kbd> to run it. Pay attention to the terminal and output in VSCode to identify any errors that may come up.
