@@ -67,9 +67,15 @@ public class MqttClientBackgroundService : BackgroundService
     private void Obs_Connected(object sender, EventArgs e)
     {
         Console.WriteLine("connected to OBS WebSocket");
-
-        //GetSceneItems();
-        //InitSceneInputs();
+        
+        // @michaeljsmalley - 2/3/2024
+        // For some reason the original repository
+        // had the GetSceneItems() and InitSceneInputs() function calls commented out,
+        // effectively breaking the application. Uncommenting them allows the
+        // application to send all required values to OBS, assuming you've followed
+        // my updated README and created a Scene called BambuStream.
+        GetSceneItems();
+        InitSceneInputs();
 
         chamberTemp = obs.GetInputSettings("ChamberTemp");
         bedTemp = obs.GetInputSettings("BedTemp");
