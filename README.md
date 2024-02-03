@@ -23,6 +23,7 @@ If you are missing any of the following pieces of software, none of this will wo
 
 # Bugs
 1. You have to manually delete and recreate the BambuStream scene in OBS every time you run the application as it doesn't gracefully handle the presence of an existing one with Source values inside it. If someone wants to take a crack at that it would make this a lot more convenient to use.
+2. Images/preview.png is using a placeholder until the application is updated to pull an actual preview image of the print.
 
 # Run
 1. In VSCode hold <kbd>Ctrl</kbd> + <kbd>F5</kbd> to run it. Pay attention to the terminal and output in VSCode to identify any errors that may come up.
