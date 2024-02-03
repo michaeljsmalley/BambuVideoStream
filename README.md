@@ -21,6 +21,9 @@ If you are missing any of the following pieces of software, none of this will wo
 | pathToSDP | There are two things to check here. First, ensure you replace `XXXXX` with your Windows username. Second, ensure it points to your slicer's libraries. For OrcaSlicer this is different. (e.g. `C:/Users/<yourusername>/AppData/Roaming/OrcaSlicer/cameratools/ffmpeg.sdp` Again, depending on the slicer software you use, this will be different. Note I change the default `BambuStudio` to `OrcaSlicer` in the path. If you're like me and never installed BambuStudio, you will need to do this, otherwise this tool will print to a non-existent ffmpeg.sdp. |
 | ObsWsConnection | You don't need to change anything here, but be warned, if you don't enable this in OBS under <kbd>Tools</kbd> > <kbd>WebSocket Server Settings</kbd>, it won't work. It currently only works on your local network and without password authentication. |
 
+# Bugs
+1. You have to manually delete and recreate the BambuStream scene in OBS every time you run the application as it doesn't gracefully handle the presence of an existing one with Source values inside it. If someone wants to take a crack at that it would make this a lot more convenient to use.
+
 # Run
 1. In VSCode hold <kbd>Ctrl</kbd> + <kbd>F5</kbd> to run it. Pay attention to the terminal and output in VSCode to identify any errors that may come up.
 
