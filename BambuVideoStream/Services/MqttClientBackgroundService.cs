@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using MQTTnet;
@@ -67,13 +67,7 @@ public class MqttClientBackgroundService : BackgroundService
     private void Obs_Connected(object sender, EventArgs e)
     {
         Console.WriteLine("connected to OBS WebSocket");
-        
-        // @michaeljsmalley - 2/3/2024
-        // For some reason the original repository
-        // had the GetSceneItems() and InitSceneInputs() function calls commented out,
-        // effectively breaking the application. Uncommenting them allows the
-        // application to send all required values to OBS, assuming you've followed
-        // my updated README and created a Scene called BambuStream.
+
         GetSceneItems();
         InitSceneInputs();
 
@@ -99,6 +93,7 @@ public class MqttClientBackgroundService : BackgroundService
         partFanIcon = obs.GetInputSettings("PartFanIcon");
         auxFanIcon = obs.GetInputSettings("AuxFanIcon");
         chamberFanIcon = obs.GetInputSettings("ChamberFanIcon");
+
     }
 
 
@@ -253,9 +248,9 @@ public class MqttClientBackgroundService : BackgroundService
     void UpdateBedTempIconSetting(InputSettings setting, double value)
     {
         if (value == 0)
-            setting.Settings["file"] = "D:/Projects/BambuVideoStream/Images/monitor_bed_temp.png";
+            setting.Settings["file"] = Path.GetFullPath("../Images/monitor_bed_temp.png");
         else
-            setting.Settings["file"] = "D:/Projects/BambuVideoStream/Images/monitor_bed_temp_active.png";
+            setting.Settings["file"] = Path.GetFullPath("../Images/monitor_bed_temp_active.png");
 
         obs.SetInputSettings(setting);
     }
@@ -264,9 +259,9 @@ public class MqttClientBackgroundService : BackgroundService
     void UpdateNozzleTempIconSetting(InputSettings setting, double value)
     {
         if (value == 0)
-            setting.Settings["file"] = "D:/Projects/BambuVideoStream/Images/monitor_nozzle_temp.png";
+            setting.Settings["file"] = Path.GetFullPath("../Images/monitor_nozzle_temp.png");
         else
-            setting.Settings["file"] = "D:/Projects/BambuVideoStream/Images/monitor_nozzle_temp_active.png";
+            setting.Settings["file"] = Path.GetFullPath("../Images/monitor_nozzle_temp_active.png");
 
         obs.SetInputSettings(setting);
     }
@@ -275,9 +270,9 @@ public class MqttClientBackgroundService : BackgroundService
     void UpdateFanIconSetting(InputSettings setting, string value)
     {
         if (value == "0")
-            setting.Settings["file"] = "D:/Projects/BambuVideoStream/Images/fan_off.png";
+            setting.Settings["file"] = Path.GetFullPath("../Images/fan_off.png");
         else
-            setting.Settings["file"] = "D:/Projects/BambuVideoStream/Images/fan_icon.png";
+            setting.Settings["file"] = Path.GetFullPath("../Images/fan_icon.png");
 
         obs.SetInputSettings(setting);
     }
@@ -290,7 +285,7 @@ public class MqttClientBackgroundService : BackgroundService
         {
             var bytes = ftpService.GetFileThumbnail(fileName);
 
-            File.WriteAllBytes(@"D:\Projects\BambuVideoStream\Images\preview.png", bytes);
+            File.WriteAllBytes(Path.GetFullPath("../Images/preview.png"), bytes);
 
             var stream = ftpService.GetPrintJobWeight(fileName);
         }
@@ -403,15 +398,15 @@ public class MqttClientBackgroundService : BackgroundService
         CreateTextInput("Filament", 1437, 1022);
         CreateTextInput("TargetNozzleTemp", 597, 1025);
 
-        CreateImageInput("AuxFanIcon", @"D:/Projects/BambuVideoStream/Images/fan_off.png", 248, 969);
-        CreateImageInput("NozzleTempIcon", @"D:/Projects/BambuVideoStream/Images/monitor_nozzle_temp.png", 492, 1025);
-        CreateImageInput("BedTempIcon", @"D:/Projects/BambuVideoStream/Images/monitor_bed_temp.png", 243, 1025);
-        CreateImageInput("ChamberTempIcon", @"D:/Projects/BambuVideoStream/Images/monitor_frame_temp.png", 9, 1021);
-        CreateImageInput("TimeIcon", @"D:/Projects/BambuVideoStream/Images/monitor_tasklist_time.png", 1732, 1016);
-        CreateImageInput("FilamentIcon", @"D:/Projects/BambuVideoStream/Images/filament.png", 1254, 1021);
-        CreateImageInput("ChamberFanIcon", @"D:/Projects/BambuVideoStream/Images/fan_off.png", 494, 968);
-        CreateImageInput("PartFanIcon", @"D:/Projects/BambuVideoStream/Images/fan_off.png", 10, 967);
-        CreateImageInput("PreviewImage", @"D:/Projects/BambuVideoStream/Images/preview.png", 1667, 105);
+        CreateImageInput("AuxFanIcon", @Path.GetFullPath("../Images/fan_off.png"), 248, 969);
+        CreateImageInput("NozzleTempIcon", @Path.GetFullPath("../Images/monitor_nozzle_temp.png"), 492, 1025);
+        CreateImageInput("BedTempIcon", @Path.GetFullPath("../Images/monitor_bed_temp.png"), 243, 1025);
+        CreateImageInput("ChamberTempIcon", @Path.GetFullPath("../Images/monitor_frame_temp.png"), 9, 1021);
+        CreateImageInput("TimeIcon", @Path.GetFullPath("../Images/monitor_tasklist_time.png"), 1732, 1016);
+        CreateImageInput("FilamentIcon", @Path.GetFullPath("../Images/filament.png"), 1254, 1021);
+        CreateImageInput("ChamberFanIcon", @Path.GetFullPath("../Images/fan_off.png"), 494, 968);
+        CreateImageInput("PartFanIcon", @Path.GetFullPath("../Images/fan_off.png"), 10, 967);
+        CreateImageInput("PreviewImage", @Path.GetFullPath("../Images/preview.png"), 1667, 105);
     }
 
 
@@ -493,4 +488,3 @@ public class MqttClientBackgroundService : BackgroundService
     }
 
 }
-
