@@ -1,3 +1,7 @@
+# Features
+* BambuVideoSteam automatically adds the required Sources (text labels and dynamic sensor values) to OBS via WebSockets. This is a double-edged sword. It requires you have a scene called BambuStream with no Sources configured inside it. Only then can you run this script and generate the Sources.
+* BambuVideoSteam automatically stops your OBS broadcast as soon as the print ends. I learned this through playing with it and realizing I no longer had to stop my broadcasts. Some might find this annoying, I actually thought it was kind of neat, but ideally this is something that would be baked into an options menu in future versions.
+
 # Prerequisites
 If you are missing any of the following pieces of software, none of this will work:
  * [Orca Slicer](https://github.com/SoftFever/OrcaSlicer/releases) or [Bambu Studio](https://bambulab.com/en/download/studio) (In the below instructions, `pathToSDP` changes depending on which of these you choose)
@@ -28,6 +32,8 @@ If you are missing any of the following pieces of software, none of this will wo
 # Run
 1. In VSCode hold <kbd>Ctrl</kbd> + <kbd>F5</kbd> to run it. Pay attention to the terminal and output in VSCode to identify any errors that may come up.
 
+
+# OLD README CONTENT
 # BambuVideoStream
 .Net app to push MQTT sensor data from Bambu Lab 3D printer to OBS for video streaming.
 
