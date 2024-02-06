@@ -365,16 +365,20 @@ public class MqttClientBackgroundService : BackgroundService
         var colorSource = new JObject
             {
                 {"color", 4278190080},
-                {"height", 130},
-                {"width", 1920}
+                /* Change this from 0 x 0 (and update positionX and positionY) to draw a background box around your metrics.*/
+                {"height", 0},
+                {"width", 0}
             };
 
         var newSceneId = obs.CreateInput("BambuStream", "ColorSource", "color_source_v3", colorSource, true);
 
         var transform = new JObject
             {
-                { "positionX", 0 },
+                { "positionX", 1 },
+                /*
                 { "positionY", 949 }
+                */
+                { "positionY", 1 }
              };
 
         obs.SetSceneItemTransform("BambuStream", newSceneId, transform);
@@ -382,6 +386,7 @@ public class MqttClientBackgroundService : BackgroundService
         // ============================================
         // Text Inputs
         // ============================================
+        /*
         CreateTextInput("TargetBedTemp", 331, 1024);
         CreateTextInput("PrintWeight", 1303, 1021);
         CreateTextInput("ChamberTemp", 63, 1025);
@@ -407,6 +412,35 @@ public class MqttClientBackgroundService : BackgroundService
         CreateImageInput("ChamberFanIcon", @Path.GetFullPath("../Images/fan_off.png"), 494, 968);
         CreateImageInput("PartFanIcon", @Path.GetFullPath("../Images/fan_off.png"), 10, 967);
         CreateImageInput("PreviewImage", @Path.GetFullPath("../Images/preview.png"), 1667, 105);
+        */
+
+        CreateTextInput("TargetBedTemp", 316, 68);
+        CreateTextInput("PrintWeight", 720, 11);
+        CreateTextInput("ChamberTemp", 69, 68);
+        CreateTextInput("BedTemp", 269, 68);
+        CreateTextInput("NozzleTemp", 486, 68);
+        CreateTextInput("PercentComplete", 66, 389);
+        CreateTextInput("Layers", 65, 345);
+        CreateTextInput("TimeRemaining", 65, 301);
+        CreateTextInput("SubtaskName", 12, 11);
+        CreateTextInput("Stage", 60, 262);
+        CreateTextInput("PartFan", 60, 117);
+        CreateTextInput("AuxFan", 60, 161);
+        CreateTextInput("ChamberFan", 60, 205);
+        CreateTextInput("Filament", 555, 11);
+        CreateTextInput("TargetNozzleTemp", 542, 68);
+
+        CreateImageInput("AuxFanIcon", @Path.GetFullPath("../Images/fan_off.png"), 24, 169);
+        CreateImageInput("NozzleTempIcon", @Path.GetFullPath("../Images/monitor_nozzle_temp.png"), 428, 60);
+        CreateImageInput("BedTempIcon", @Path.GetFullPath("../Images/monitor_bed_temp.png"), 215, 60);
+        CreateImageInput("ChamberTempIcon", @Path.GetFullPath("../Images/monitor_frame_temp.png"), 9, 53);
+        CreateImageInput("TimeIcon", @Path.GetFullPath("../Images/monitor_tasklist_time.png"), 10, 293);
+        CreateImageInput("FilamentIcon", @Path.GetFullPath("../Images/filament.png"), 500, 5);
+        CreateImageInput("ChamberFanIcon", @Path.GetFullPath("../Images/fan_off.png"), 24, 210);
+        CreateImageInput("PartFanIcon", @Path.GetFullPath("../Images/fan_off.png"), 24, 124);
+        /* MJS - 2/5/2024 - PreviewImage commented out until it actually works //
+        CreateImageInput("PreviewImage", @Path.GetFullPath("../Images/preview.png"), 1667, 105);
+        */
     }
 
 
@@ -440,7 +474,7 @@ public class MqttClientBackgroundService : BackgroundService
                 { "text", "test" },
                 { "font", new JObject
                     {
-                        { "face", "Arial" },
+                        { "face", "Georgia" },
                         { "size", 36 },
                         { "style", "regular" }
                     }
